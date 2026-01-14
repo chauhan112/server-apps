@@ -1,0 +1,52 @@
+services:
+  database:
+    image: postgres:15
+    container_name: central_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'directus'
+      POSTGRES_PASSWORD: 'directuspassword'
+      POSTGRES_DB: 'directus'
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - internal_net
+  directus:
+    image: directus/directus:latest
+    restart: always
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: '7612608864004e7a8e380e60ed85dbe6'
+      SECRET: 'secret-sssss'
+
+      DB_CLIENT: 'pg'
+      DB_HOST: 'database'
+      DB_PORT: '5432'
+      DB_DATABASE: 'directus'
+      DB_USER: 'root'
+      DB_PASSWORD: 'db-password'
+
+      CACHE_ENABLED: 'false'
+
+      ADMIN_EMAIL: 'rajababuchauhan500@gmail.com'
+      ADMIN_PASSWORD: 'admin-password' 
+
+      STORAGE_LOCATIONS: 'local'
+      STORAGE_LOCAL_ROOT: '/directus/uploads'
+
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'true'
+      CORS_METHODS: 'GET,POST,PATCH,DELETE,OPTIONS'
+      CORS_ALLOWED_HEADERS: 'Content-Type,Authorization'
+
+    volumes:
+      - ./uploads:/directus/uploads
+    depends_on:
+      - database
+    networks:
+      - internal_net
+
+networks:
+  internal_net:
+    driver: bridge
