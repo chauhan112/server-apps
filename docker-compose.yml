@@ -1,0 +1,17 @@
+services:
+  sandbox:
+    image: linuxserver/code-server:latest
+    container_name: sandbox-workspace
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - PASSWORD=Jv1[s"b6w!0+SLb<{KT)$4kHt>;cY\\  # The password to access the web UI
+      - DEFAULT_WORKSPACE=/config/workspace
+      - SUDO_PASSWORD=root
+      - SUDO_ACCESS=true
+    volumes:
+      - C:/Users/rajab/Desktop/stuffs/global/experiments/2026/docker/data:/config # This stores your settings/extensions
+    ports:
+      - 8443:8443 # Maps container port 8443 to laptop port 8443
+    restart: unless-stopped
