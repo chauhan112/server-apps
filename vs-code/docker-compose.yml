@@ -6,7 +6,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
-      - PASSWORD=Jv1[s"b6w!0+SLb<{KT)$4kHt>;cY\\  # The password to access the web UI
+      - PASSWORD=** 
       - DEFAULT_WORKSPACE=/config/workspace
       - SUDO_PASSWORD=root
       - SUDO_ACCESS=true
