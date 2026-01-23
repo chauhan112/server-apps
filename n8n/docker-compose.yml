@@ -5,7 +5,7 @@ services:
     image: n8nio/n8n:latest
     restart: unless-stopped
     ports:
-      - "127.0.0.1:${HOST_PORT}:${CONTAINER_PORT}"
+      - "${HOST_PORT}:${CONTAINER_PORT}"
     env_file:
       - .env
     environment:
