@@ -5,13 +5,15 @@ services:
     image: n8nio/n8n:latest
     restart: unless-stopped
     ports:
-      - "127.0.0.1:5678:5678"
+      - "127.0.0.1:${HOST_PORT}:${CONTAINER_PORT}"
+    env_file:
+      - .env
     environment:
-      - N8N_HOST=n8n.rajababu.space
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=https
-      - NODE_ENV=production
-      - WEBHOOK_URL=https://n8n.rajababu.space/
-      - GENERIC_TIMEZONE=Europe/Berlin
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PORT=${N8N_PORT}
+      - N8N_PROTOCOL=${N8N_PROTOCOL}
+      - NODE_ENV=${NODE_ENV}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
     volumes:
       - ./n8n_data:/home/node/.n8n

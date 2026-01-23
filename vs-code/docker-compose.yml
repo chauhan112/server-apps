@@ -1,17 +1,21 @@
+version: '3.8'
+
 services:
   sandbox:
     image: linuxserver/code-server:latest
     container_name: sandbox-workspace
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-      - PASSWORD=** 
-      - DEFAULT_WORKSPACE=/config/workspace
-      - SUDO_PASSWORD=root
-      - SUDO_ACCESS=true
-    volumes:
-      - C:/Users/rajab/Desktop/stuffs/global/experiments/2026/docker/data:/config # This stores your settings/extensions
-    ports:
-      - 8443:8443 # Maps container port 8443 to laptop port 8443
     restart: unless-stopped
+    ports:
+      - "${SANDBOX_PORT}:8443"
+    env_file:
+      - .env
+    environment:
+      - PUID=${SANDBOX_PUID}
+      - PGID=${SANDBOX_PGID}
+      - TZ=${SANDBOX_TZ}
+      - PASSWORD=${SANDBOX_PASSWORD}
+      - DEFAULT_WORKSPACE=${SANDBOX_DEFAULT_WORKSPACE}
+      - SUDO_PASSWORD=${SANDBOX_SUDO_PASSWORD}
+      - SUDO_ACCESS=${SANDBOX_SUDO_ACCESS}
+    volumes:
+      - ${SANDBOX_CONFIG_PATH}:/config
