@@ -1,3 +1,6 @@
 data/
 .specstory/
 .env
+
+n8n_data
+openclaw/workspace

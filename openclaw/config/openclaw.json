@@ -1,0 +1,24 @@
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai/glm-4.7-flash"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "openai": {
+        "baseUrl": "https://api.z.ai/api/paas/v4/",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-4.7-flash",
+            "name": "GLM 4.7 Flash"
+          }
+        ]
+      }
+    }
+  },
+  "channels": {}
+}
