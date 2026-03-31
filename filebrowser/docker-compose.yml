@@ -1,0 +1,14 @@
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:s6
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    volumes:
+      - ${MY_FILES_PATH}:/srv
+      - ./database:/database
+      - ./settings.json:/config/settings.json
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}

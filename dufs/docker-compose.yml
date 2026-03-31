@@ -1,0 +1,13 @@
+version: '3'
+services:
+  dufs:
+    image: sigoden/dufs
+    container_name: dufs
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    volumes:
+      - ${MY_FILES_PATH}:/data
+    # Use variables from .env for the login
+    # Format: user:pass@path:permissions (rw = read/write)
+    command: /data -A -a "${DUFS_USER}:${DUFS_PASS}@/:rw"
