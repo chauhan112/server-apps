@@ -1,0 +1,31 @@
+services:
+  backend:
+    image: zimengxiong/excalidash-backend:latest
+    container_name: excalidash-backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - FRONTEND_URL=${SERVER_URL} # http://your-server-ip:6767
+      - JWT_SECRET=${JWT_SECRET}
+      - CSRF_SECRET=${CSRF_SECRET}
+    volumes:
+      - ./data:/app/backend/prisma/data # This is where your database lives
+    networks:
+      - excalidash-net
+
+  frontend:
+    image: zimengxiong/excalidash-frontend:latest
+    container_name: excalidash-frontend
+    restart: unless-stopped
+    ports:
+      - "6767:80"
+    environment:
+      - BACKEND_URL=backend:8000
+    depends_on:
+      - backend
+    networks:
+      - excalidash-net
+
+networks:
+  excalidash-net:
+    driver: bridge
