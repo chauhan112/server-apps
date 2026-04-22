@@ -1,0 +1,9 @@
+services:
+  vscode-polyglot:
+    build: .
+    container_name: vscode-polyglot
+    ports:
+      # Reuses the port you defined in your .env file
+      - "${JUPYTER_PORT}:8888"
+    volumes:
+      - ${LOCAL_WORKSPACE_PATH}:/workspace
