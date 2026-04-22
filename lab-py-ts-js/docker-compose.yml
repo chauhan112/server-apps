@@ -1,0 +1,17 @@
+services:
+  jupyter:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    container_name: jupyter-polyglot-o47
+    ports:
+      - "${OPENAI_API_KEY}:8888"   
+      - "9229:9229" 
+      - "5678:5678" 
+    volumes:
+      - ./notebooks:/workspace/notebooks
+      - ./data:/workspace/data
+      - ./:/workspace
+    working_dir: /workspace
+    stdin_open: true
+    tty: true

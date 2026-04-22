@@ -1,0 +1,22 @@
+{
+    "name": "jupyter-polyglot",
+    "dockerComposeFile": ["../docker-compose.yml"],
+    "service": "jupyter",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.debugpy",
+                "ms-toolsai.jupyter",
+                "denoland.vscode-deno",
+                "oven.bun-vscode"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/opt/venv/bin/python",
+                "deno.enable": true,
+                "deno.unstable": true
+            }
+        }
+    }
+}

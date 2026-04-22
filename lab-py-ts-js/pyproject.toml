@@ -1,0 +1,10 @@
+[project]
+name = "jupyter-polyglot"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyterlab>=4.2",
+    "ipykernel>=6.29",
+    "debugpy>=1.8",
+    "ipywidgets",
+]
